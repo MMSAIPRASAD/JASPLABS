@@ -1,0 +1,52 @@
+<div>
+    <h1 class="text-center" style="font-size:medium;">Teacher Table</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <div class="card">
+                    <div class="card-body">
+                        <canvas id="canvas">{{ Linechart }}</canvas>    
+                    </div>
+                </div>
+            </div>
+         </div>     
+    </div>
+    <div>
+
+    <input [(ngModel)]="searchText" placeholder="Search Details" style="width:200px;border-radius: 5%;">
+    <br>
+    <br>
+    <div class="table-responsive">
+        <table class="table table-bordered table-warning">
+            <thead>
+                <tr>
+                    <th scope="col">Sno</th>
+                    <th scope="col">TeacherName</th>
+                    <th scope="col">TeacherId</th>
+                    <th scope="col">Joining</th>
+                    <th scope="col">Qualification</th>
+                    <th scope="col">Teacher Class</th>
+                    <th scope="col">Attendance</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let teacher of teachers | filter:searchText  |  paginate: {
+                itemsPerPage: pageSize,
+                currentPage: page,
+                totalItems: count
+              }">
+                <tr>
+                    <td>{{teacher.sno}}</td>
+                    <td>{{teacher.teachername}}</td>
+                    <td>{{teacher.teacherid}}</td>
+                    <td>{{teacher.joiningyear}}</td>
+                    <td>{{teacher.qualification}}</td>
+                    <td>{{teacher.teacherclass}}</td>
+                    <td>{{teacher.attendance}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <pagination-controls (pageChange)="handlePageChange($event)"></pagination-controls>
+
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+        <div class="card text-white bg-primary" style="margin-bottom: 10px;">
+            <div class="card-body text-center">
+                <h5 class="card-title">Student Strength</h5>
+                <p class="card-text " *ngFor="let strengths of strength">Strength : {{strengths.studentstrength}}</p>
+                <a (click)="getstudentlist()" class="text-white stretched-link"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+        <div class="card text-white bg-success " style="margin-bottom: 10px;">
+            <div class="card-body text-center">
+                <h5 class="card-title">Teacher Strength</h5>
+                <p class="card-text " *ngFor="let strengths of strength">Strength : {{strengths.teacherstrength}}</p>
+                <a (click)="getteacherlist()" class="text-white stretched-link"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+        <div class="card text-white bg-warning" style="margin-bottom: 10px;">
+            <div class="card-body text-center">
+                <h5 class="card-title">Non Teaching Strength</h5>
+                <p class="card-text " *ngFor="let strengths of strength">Strength : {{strengths.nonteachingstrength}}
+                </p>
+                <a (click)="getnonteacherlist()" class="text-white stretched-link"></a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div *ngIf="!teacher && student && !nonteacher">
+    <app-studentdata></app-studentdata>
+
+</div>
+       
+<div *ngIf="teacher && !student && !nonteacher">
+    <app-teacherdata ></app-teacherdata>
+</div>
+
+<div *ngIf="!teacher && !student && nonteacher">
+<app-nonteacherdata></app-nonteacherdata>
+</div>

@@ -1,0 +1,59 @@
+<div>
+    <h1 class="text-center" style="font-size:medium;">Non Teaching Table</h1>
+    <div>
+    <input [(ngModel)]="searchText" placeholder="Search.." style="width:200px;border-radius: 5%;">
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <div class="card">
+                    <div class="card-body">
+                        <canvas id="canvas">{{ Linechart }}</canvas>    
+                    </div>
+                </div>
+            </div>
+         </div>     
+    </div> 
+      <br>
+      <br>
+      <br>
+<div class="table-responsive">
+        <table class="table table-bordered table-success">
+            <thead>
+                <tr>
+                    <th scope="col">Sno</th>
+                    <th scope="col">StaffName</th>
+                    <th scope="col">StaffId</th>
+                    <th scope="col">JoiningYear</th>
+                    <th scope="col">Qualification</th>
+                    <th scope="col">Designation</th>
+                    <th scope="col">Attendance</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let nonteacher of nonteaching | filter:searchText  |  paginate: {
+                itemsPerPage: pageSize,
+                currentPage: page,
+                totalItems: count
+            }">
+                <tr>
+                    <td>{{nonteacher.sno}}</td>
+                    <td>{{nonteacher.staffname}}</td>
+                    <td>{{nonteacher.staffid}}</td>
+
+                    <td>{{nonteacher.joiningyear}}</td>
+                    <td>{{nonteacher.qualification}}</td>
+                    <td>{{nonteacher.designation}}</td>
+
+                    <td>{{nonteacher.attendance}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <pagination-controls (pageChange)="handlePageChange($event)"></pagination-controls>
+
+    </div>
+</div>
+</div>
+
+

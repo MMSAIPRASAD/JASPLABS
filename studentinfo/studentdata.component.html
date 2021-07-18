@@ -1,0 +1,55 @@
+<div>
+    <h1 class="text-center" style="font-size:medium;">Student Table</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <div class="card">
+                    <div class="card-body">
+                        <canvas id="canvas">{{ Linechart }}</canvas>    
+                    </div>
+                </div>
+            </div>
+         </div>     
+    </div>
+    <div>
+    <input [(ngModel)]="searchText" placeholder="Search.." style="width:200px;border-radius: 5%;">
+    <br>
+    <br>
+        <div class="table-responsive">
+            <table class="table table-bordered table-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">Sno</th>
+                        <th scope="col">StudentName</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Year</th>
+                        <th scope="col">Medium</th>
+                        <th scope="col">Admission Number</th>
+                        <th scope="col">Attendance</th>
+                        <th scope="col">Academic</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let arr of students | filter:searchText  |  paginate: {
+        itemsPerPage: pageSize,
+        currentPage: page,
+        totalItems: count
+    }">
+                    <tr>
+                        <td>{{arr.sno}}</td>
+                        <td>{{arr.studentname}}</td>
+                        <td>{{arr.class}}</td>
+
+                        <td>{{arr.year}}</td>
+                        <td>{{arr.medium}}</td>
+                        <td>{{arr.admissionnumber}}</td>
+
+                        <td>{{arr.attendance}}</td>
+                        <td>{{arr.academic}}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <pagination-controls (pageChange)="handlePageChange($event)"></pagination-controls>
+        </div>
+    </div>
+</div>
